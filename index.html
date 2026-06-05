@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ScholarXP</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <h1>🎓 ScholarXP</h1>
+
+            <p>
+                Learn. Earn XP. Level Up.
+            </p>
+
+        </div>
+
+        <div class="profile-btn">
+            👤
+        </div>
+
+    </header>
+
+    <!-- Top Stats -->
+
+    <section class="top-grid">
+
+        <div class="xp-card">
+
+            <h2>
+                🏆 Level
+                <span id="level">
+                    1
+                </span>
+            </h2>
+
+            <p>
+                ⭐ XP:
+                <span id="xp">
+                    0
+                </span>
+            </p>
+
+            <div class="progress-bar">
+
+                <div
+                class="progress-fill"
+                id="progressFill"
+                ></div>
+
+            </div>
+
+        </div>
+
+        <div class="streak-card">
+
+            <h2>🔥 Streak</h2>
+
+            <p>
+
+                <span id="streak">
+                    1
+                </span>
+
+                Days
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Timer -->
+
+    <section class="card">
+
+        <h2>
+            ⏱️ Focus Timer
+        </h2>
+
+        <div
+        class="timer-display"
+        id="timerDisplay"
+        >
+            25:00
+        </div>
+
+        <div class="timer-buttons">
+
+            <button id="startBtn">
+                Start
+            </button>
+
+            <button id="pauseBtn">
+                Pause
+            </button>
+
+            <button id="resetBtn">
+                Reset
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Goals -->
+
+    <section class="card">
+
+        <h2>
+            🎯 Goals
+        </h2>
+
+        <input
+        type="text"
+        id="goalInput"
+        placeholder="Enter goal..."
+        >
+
+        <input
+        type="date"
+        id="goalDate"
+        >
+
+        <button id="addGoalBtn">
+
+            Add Goal
+
+        </button>
+
+        <div id="goalList">
+
+        </div>
+
+    </section>
+
+    <!-- Daily Quests -->
+
+    <section class="card">
+
+        <h2>
+            📚 Daily Quests
+        </h2>
+
+        <div class="quest">
+
+            ☐ Complete 1 Quiz
+
+            <span>
+                +20 XP
+            </span>
+
+        </div>
+
+        <div class="quest">
+
+            ☐ Study 30 Minutes
+
+            <span>
+                +15 XP
+            </span>
+
+        </div>
+
+        <div class="quest">
+
+            ☐ Review Notes
+
+            <span>
+                +10 XP
+            </span>
+
+        </div>
+
+    </section>
+
+    <!-- Achievements -->
+
+    <section class="card">
+
+        <h2>
+            🏅 Achievements
+        </h2>
+
+        <div id="achievementList">
+
+            <div class="achievement">
+                🎯 First Goal
+            </div>
+
+            <div class="achievement">
+                🔥 3 Day Streak
+            </div>
+
+            <div class="achievement">
+                ⭐ First XP
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Progress -->
+
+    <section class="card">
+
+        <h2>
+            📈 Weekly Progress
+        </h2>
+
+        <div id="progressChart">
+
+            Progress chart
+            will appear here
+
+        </div>
+
+    </section>
+
+    <!-- Leaderboard -->
+
+    <section class="card">
+
+        <h2>
+            🏆 Leaderboard
+        </h2>
+
+        <div id="leaderboard">
+
+            <div>
+                🥇 Alex - 1200 XP
+            </div>
+
+            <div>
+                🥈 Sarah - 950 XP
+            </div>
+
+            <div>
+                🥉 You - 800 XP
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Profile -->
+
+    <section class="card">
+
+        <h2>
+            👤 Profile
+        </h2>
+
+        <p>
+            Name:
+            Scholar
+        </p>
+
+        <p>
+            Level:
+            1
+        </p>
+
+        <p>
+            Total XP:
+            0
+        </p>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 ScholarXP
+        </p>
+
+        <p>
+            Learn • Earn XP • Level Up
+        </p>
+
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
