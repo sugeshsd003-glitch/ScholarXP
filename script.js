@@ -719,11 +719,6 @@ localStorage.getItem(
 )
 ) || [];
 
-const uploadArea =
-document.getElementById(
-"uploadArea"
-);
-
 const fileInput =
 document.getElementById(
 "fileInput"
@@ -979,87 +974,102 @@ alert(
 
 reader.readAsText(file);
 
-};
+}
 
+// =====================
+// FILE INPUT LISTENERS
+// =====================
+
+if(uploadBtn){
 uploadBtn.addEventListener(
 "click",
-() => {
-
+function(e){
+e.preventDefault();
 fileInput.click();
-
 }
 );
+}
 
+if(fileInput){
 fileInput.addEventListener(
 "change",
 (e) => {
-
 handleFileUpload(
 e.target.files[0]
 );
-
 }
 );
+}
+
+// =====================
+// DRAG & DROP LISTENERS
+// =====================
+
+const uploadArea =
+document.getElementById(
+"uploadArea"
+);
+
+if(uploadArea){
 
 uploadArea.addEventListener(
 "dragover",
 (e) => {
-
 e.preventDefault();
-
+e.stopPropagation();
 uploadArea.style.borderColor =
 "var(--primary)";
-
 }
 );
 
 uploadArea.addEventListener(
 "dragleave",
-() => {
-
+(e) => {
+e.preventDefault();
+e.stopPropagation();
 uploadArea.style.borderColor =
 "var(--border)";
-
 }
 );
 
 uploadArea.addEventListener(
 "drop",
 (e) => {
-
 e.preventDefault();
-
+e.stopPropagation();
 uploadArea.style.borderColor =
 "var(--border)";
-
 handleFileUpload(
 e.dataTransfer.files[0]
 );
-
 }
 );
 
+}
+
+// =====================
+// MODAL LISTENERS
+// =====================
+
+if(closeBtn){
 closeBtn.addEventListener(
 "click",
 () => {
-
 fileModal.style.display = "none";
-
 }
 );
+}
 
+if(fileModal){
 window.addEventListener(
 "click",
 (e) => {
-
 if(e.target === fileModal){
-
 fileModal.style.display = "none";
-
 }
-
 }
 );
+}
 
 // =====================
 // EVENT LISTENERS
