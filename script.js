@@ -729,6 +729,11 @@ document.getElementById(
 "uploadBtn"
 );
 
+const uploadArea =
+document.getElementById(
+"uploadArea"
+);
+
 const fileList =
 document.getElementById(
 "fileList"
@@ -977,10 +982,9 @@ reader.readAsText(file);
 }
 
 // =====================
-// FILE INPUT LISTENERS
+// FILE INPUT - BUTTON CLICK
 // =====================
 
-if(uploadBtn){
 uploadBtn.addEventListener(
 "click",
 function(e){
@@ -988,88 +992,86 @@ e.preventDefault();
 fileInput.click();
 }
 );
-}
 
-if(fileInput){
+// =====================
+// FILE INPUT - CHANGE EVENT
+// =====================
+
 fileInput.addEventListener(
 "change",
-(e) => {
+function(e){
 handleFileUpload(
 e.target.files[0]
 );
 }
 );
-}
 
 // =====================
-// DRAG & DROP LISTENERS
+// DRAG & DROP - UPLOAD AREA
 // =====================
-
-const uploadArea =
-document.getElementById(
-"uploadArea"
-);
-
-if(uploadArea){
 
 uploadArea.addEventListener(
 "dragover",
-(e) => {
+function(e){
 e.preventDefault();
 e.stopPropagation();
 uploadArea.style.borderColor =
 "var(--primary)";
+uploadArea.style.background =
+"rgba(99,102,241,.1)";
 }
 );
 
 uploadArea.addEventListener(
 "dragleave",
-(e) => {
+function(e){
 e.preventDefault();
 e.stopPropagation();
 uploadArea.style.borderColor =
 "var(--border)";
+uploadArea.style.background =
+"rgba(255,255,255,.02)";
 }
 );
 
 uploadArea.addEventListener(
 "drop",
-(e) => {
+function(e){
 e.preventDefault();
 e.stopPropagation();
 uploadArea.style.borderColor =
 "var(--border)";
+uploadArea.style.background =
+"rgba(255,255,255,.02)";
 handleFileUpload(
 e.dataTransfer.files[0]
 );
 }
 );
 
-}
-
 // =====================
-// MODAL LISTENERS
+// MODAL - CLOSE BUTTON
 // =====================
 
-if(closeBtn){
 closeBtn.addEventListener(
 "click",
-() => {
+function(){
 fileModal.style.display = "none";
 }
 );
-}
 
-if(fileModal){
+// =====================
+// MODAL - CLICK OUTSIDE
+// =====================
+
 window.addEventListener(
 "click",
-(e) => {
+function(e){
 if(e.target === fileModal){
 fileModal.style.display = "none";
 }
 }
 );
-}
 
 // =====================
 // EVENT LISTENERS
