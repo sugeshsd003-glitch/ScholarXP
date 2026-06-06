@@ -187,19 +187,15 @@ if(!username) return;
 
 board.innerHTML = `
 
-<div class="goal-item">
-
-<div>
+<div class="leader-row">
 
 🥇 ${username}
 
-</div>
-
-<div>
+<span>
 
 ${xp} XP
 
-</div>
+</span>
 
 </div>
 
@@ -712,6 +708,360 @@ ${item.date}
 }
 
 // =====================
+// FILE UPLOAD SYSTEM
+// =====================
+
+let uploadedFiles =
+
+JSON.parse(
+localStorage.getItem(
+"uploadedFiles"
+)
+) || [];
+
+const uploadArea =
+document.getElementById(
+"uploadArea"
+);
+
+const fileInput =
+document.getElementById(
+"fileInput"
+);
+
+const uploadBtn =
+document.getElementById(
+"uploadBtn"
+);
+
+const fileList =
+document.getElementById(
+"fileList"
+);
+
+const fileModal =
+document.getElementById(
+"fileModal"
+);
+
+const closeBtn =
+document.querySelector(
+".close"
+);
+
+function getFileIcon(filename){
+
+const ext =
+filename.split('.')
+.pop()
+.toLowerCase();
+
+if(ext === "pdf")
+return "📄";
+
+if(ext === "txt")
+return "📝";
+
+if(ext === "docx")
+return "📋";
+
+return "📁";
+
+}
+
+function saveFiles(){
+
+localStorage.setItem(
+"uploadedFiles",
+JSON.stringify(
+uploadedFiles
+));
+
+}
+
+function renderFiles(){
+
+fileList.innerHTML = "";
+
+if(uploadedFiles.length === 0){
+
+fileList.innerHTML = `
+
+<p style="
+color:var(--muted);
+text-align:center;
+padding:20px;
+">
+
+No files uploaded yet
+
+</p>
+
+`;
+
+return;
+
+}
+
+uploadedFiles.forEach(
+(file, index) => {
+
+const div =
+document.createElement("div");
+
+div.className =
+"file-item";
+
+div.innerHTML = `
+
+<div class="file-item-info"
+onclick="
+viewFile(${index})
+">
+
+<span class="file-item-icon">
+${getFileIcon(file.name)}
+</span>
+
+<div>
+
+<div class="file-item-name">
+${file.name}
+</div>
+
+<div class="file-item-size">
+${(file.size /
+1024).toFixed(2)} KB
+</div>
+
+</div>
+
+</div>
+
+<div class="file-item-actions">
+
+<button
+onclick="
+deleteFile(${index})
+">
+Delete
+</button>
+
+</div>
+
+`;
+
+fileList.appendChild(div);
+
+});
+
+}
+
+function viewFile(index){
+
+const file =
+uploadedFiles[index];
+
+const modal =
+document.getElementById(
+"fileModal"
+);
+
+const modalTitle =
+document.getElementById(
+"modalTitle"
+);
+
+const modalBody =
+document.getElementById(
+"modalBody"
+);
+
+modalTitle.textContent =
+file.name;
+
+modalBody.textContent =
+file.content;
+
+modal.style.display = "block";
+
+addXP(10);
+
+unlockAchievement(
+"Study Material Read"
+);
+
+}
+
+function deleteFile(index){
+
+uploadedFiles.splice(index, 1);
+
+saveFiles();
+
+renderFiles();
+
+}
+
+function handleFileUpload(file){
+
+if(!file)
+return;
+
+const allowedTypes =
+[
+"application/pdf",
+"text/plain",
+"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+];
+
+if(!allowedTypes.includes(
+file.type)){
+
+alert(
+"❌ Unsupported file type. Please upload PDF, TXT, or DOCX."
+);
+
+return;
+
+}
+
+if(file.size > 5 *
+1024 * 1024){
+
+alert(
+"❌ File size exceeds 5MB limit."
+);
+
+return;
+
+}
+
+const reader =
+new FileReader();
+
+reader.onload = (e) => {
+
+let content = e.target.result;
+
+if(file.type === "application/pdf"){
+
+content =
+"[PDF File - Content preview not available]";
+
+}
+
+uploadedFiles.push({
+
+name: file.name,
+
+size: file.size,
+
+content: content,
+
+uploadedAt:
+new Date()
+.toLocaleDateString()
+
+});
+
+saveFiles();
+
+renderFiles();
+
+addXP(5);
+
+alert(
+"✅ File uploaded successfully! +5 XP"
+);
+
+};
+
+reader.readAsText(file);
+
+};
+
+uploadBtn.addEventListener(
+"click",
+() => {
+
+fileInput.click();
+
+}
+);
+
+fileInput.addEventListener(
+"change",
+(e) => {
+
+handleFileUpload(
+e.target.files[0]
+);
+
+}
+);
+
+uploadArea.addEventListener(
+"dragover",
+(e) => {
+
+e.preventDefault();
+
+uploadArea.style.borderColor =
+"var(--primary)";
+
+}
+);
+
+uploadArea.addEventListener(
+"dragleave",
+() => {
+
+uploadArea.style.borderColor =
+"var(--border)";
+
+}
+);
+
+uploadArea.addEventListener(
+"drop",
+(e) => {
+
+e.preventDefault();
+
+uploadArea.style.borderColor =
+"var(--border)";
+
+handleFileUpload(
+e.dataTransfer.files[0]
+);
+
+}
+);
+
+closeBtn.addEventListener(
+"click",
+() => {
+
+fileModal.style.display = "none";
+
+}
+);
+
+window.addEventListener(
+"click",
+(e) => {
+
+if(e.target === fileModal){
+
+fileModal.style.display = "none";
+
+}
+
+}
+);
+
+// =====================
 // EVENT LISTENERS
 // =====================
 
@@ -733,6 +1083,8 @@ updateTimerDisplay();
 renderGoals();
 
 renderAchievements();
+
+renderFiles();
 
 renderProfile();
 
