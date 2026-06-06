@@ -128,9 +128,16 @@ if(
 
 xp = 9;
 
+level = 1;
+
 localStorage.setItem(
 "xp",
 xp
+);
+
+localStorage.setItem(
+"level",
+level
 );
 
 }
@@ -226,6 +233,10 @@ xp % 100;
 
 progressFill.style.width =
 progress + "%";
+
+renderProfile();
+
+renderLeaderboard();
 
 }
 
@@ -500,6 +511,10 @@ renderGoals();
 function completeGoal(index){
 
 addXP(50);
+
+unlockAchievement(
+"Goal Crusher"
+);
 
 alert(
 "🎉 Goal Completed!\n\n+50 XP"
