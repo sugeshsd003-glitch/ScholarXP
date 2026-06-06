@@ -106,6 +106,43 @@
 
     </section>
 
+    <!-- File Upload -->
+
+    <section class="card">
+
+        <h2>
+            📁 Study Materials
+        </h2>
+
+        <div class="upload-area" id="uploadArea">
+
+            <p>
+                📤 Drag & drop files here or click to upload
+            </p>
+
+            <input
+            type="file"
+            id="fileInput"
+            accept=".pdf,.txt,.docx"
+            style="display:none"
+            >
+
+            <button id="uploadBtn">
+                Choose File
+            </button>
+
+            <p style="font-size:12px; color:var(--muted); margin-top:10px;">
+                Supported: PDF, TXT, DOCX
+            </p>
+
+        </div>
+
+        <div id="fileList" style="margin-top:20px;">
+
+        </div>
+
+    </section>
+
     <!-- Timer -->
 
     <section class="card">
@@ -305,6 +342,24 @@
         </p>
 
     </footer>
+
+</div>
+
+<!-- File Viewer Modal -->
+
+<div id="fileModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close">&times;</span>
+
+        <h2 id="modalTitle">File Viewer</h2>
+
+        <div id="modalBody">
+
+        </div>
+
+    </div>
 
 </div>
 
