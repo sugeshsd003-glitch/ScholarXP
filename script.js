@@ -81,9 +81,70 @@ parseInt(
 localStorage.getItem("level")
 ) || 1;
 
+let username =
+localStorage.getItem(
+"username"
+);
+
+const loginScreen =
+document.getElementById(
+"loginScreen"
+);
+
+const joinBtn =
+document.getElementById(
+"joinBtn"
+);
+
+const usernameInput =
+document.getElementById(
+"usernameInput"
+);
+
 // =====================
 // ELEMENTS
 // =====================
+
+function createProfile(){
+
+const name =
+usernameInput.value.trim();
+
+if(name==="")
+return;
+
+username = name;
+
+localStorage.setItem(
+"username",
+name
+);
+
+if(
+!localStorage.getItem(
+"xp"
+)
+){
+
+xp = 9;
+
+localStorage.setItem(
+"xp",
+xp
+);
+
+}
+
+loginScreen.style.display =
+"none";
+
+updateXPUI();
+
+renderLeaderboard();
+
+renderProfile();
+
+}
 
 const xpEl =
 document.getElementById("xp");
