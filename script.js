@@ -146,6 +146,60 @@ renderProfile();
 
 }
 
+function renderProfile(){
+
+document.getElementById(
+"profileName"
+).textContent =
+username || "Guest";
+
+document.getElementById(
+"profileXP"
+).textContent =
+xp;
+
+document.getElementById(
+"profileLevel"
+).textContent =
+level;
+
+}
+
+function renderLeaderboard(){
+
+const board =
+document.getElementById(
+"leaderboard"
+);
+
+if(!board) return;
+
+board.innerHTML = "";
+
+if(!username) return;
+
+board.innerHTML = `
+
+<div class="goal-item">
+
+<div>
+
+🥇 ${username}
+
+</div>
+
+<div>
+
+${xp} XP
+
+</div>
+
+</div>
+
+`;
+
+}
+
 const xpEl =
 document.getElementById("xp");
 
@@ -207,13 +261,25 @@ localStorage.setItem(
 level
 );
 
+if(xp >= 10){
+unlockAchievement("First XP");
+}
+
+if(xp >= 100){
+unlockAchievement("Level One Scholar");
+}
+
+if(xp >= 500){
+unlockAchievement("Knowledge Seeker");
+}
+
+if(xp >= 1000){
+unlockAchievement("XP Master");
+}
+
 updateXPUI();
 
 }
-
-// =====================
-// LOAD
-// =====================
 
 // =====================
 // POMODORO TIMER
@@ -630,35 +696,41 @@ ${item.date}
 
 }
 
-if(xp >= 10){
+// =====================
+// EVENT LISTENERS
+// =====================
 
-unlockAchievement(
-"First XP"
+joinBtn.addEventListener(
+"click",
+createProfile
 );
 
+// =====================
+// LOAD
+// =====================
+
+updateXPUI();
+
+updateStreak();
+
+updateTimerDisplay();
+
+renderGoals();
+
+renderAchievements();
+
+renderProfile();
+
+renderLeaderboard();
+
+if(username){
+
+loginScreen.style.display =
+"none";
+
+}else{
+
+loginScreen.style.display =
+"flex";
+
 }
-
-if(xp >= 100){
-
-unlockAchievement(
-"Level One Scholar"
-);
-
-}
-
-if(xp >= 500){
-
-unlockAchievement(
-"Knowledge Seeker"
-);
-
-}
-
-if(xp >= 1000){
-
-unlockAchievement(
-"XP Master"
-);
-
-}
-
