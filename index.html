@@ -11,6 +11,30 @@
 
 <body>
 
+<!-- Login Screen -->
+
+<div id="loginScreen" class="login-screen">
+
+    <div class="login-card">
+
+        <h1>🎓 ScholarXP</h1>
+
+        <p>Enter your name to begin</p>
+
+        <input
+        type="text"
+        id="usernameInput"
+        placeholder="Your name"
+        >
+
+        <button id="joinBtn">
+            Start Learning
+        </button>
+
+    </div>
+
+</div>
+
 <div class="container">
 
     <!-- Header -->
@@ -233,27 +257,11 @@
 
     <section class="card">
 
-        <h2>
-            🏆 Leaderboard
-        </h2>
+    <h2>🏆 Leaderboard</h2>
 
-        <div id="leaderboard">
+    <div id="leaderboard"></div>
 
-            <div>
-                🥇 Alex - 1200 XP
-            </div>
-
-            <div>
-                🥈 Sarah - 950 XP
-            </div>
-
-            <div>
-                🥉 You - 800 XP
-            </div>
-
-        </div>
-
-    </section>
+</section>
 
     <!-- Profile -->
 
@@ -263,22 +271,33 @@
             👤 Profile
         </h2>
 
-        <p>
-            Name:
-            Scholar
-        </p>
+        <section class="card">
 
-        <p>
-            Level:
+    <h2>👤 Profile</h2>
+
+    <p>
+        Name:
+        <span id="profileName">
+            Guest
+        </span>
+    </p>
+
+    <p>
+        Level:
+        <span id="profileLevel">
             1
-        </p>
+        </span>
+    </p>
 
-        <p>
-            Total XP:
+    <p>
+        XP:
+        <span id="profileXP">
             0
-        </p>
+        </span>
+    </p>
 
-    </section>
+</section>
+    
 
     <!-- Footer -->
 
